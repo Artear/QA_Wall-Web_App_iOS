@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dAy-A7-owC">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="znO-K9-CyL">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="dAy-A7-owC" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mA9-K3-KR7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ccB-rH-eFT" kind="relationship" relationship="rootViewController" id="27f-jQ-OVl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TTz-df-uoe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="42" y="348"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="aww-1n-qQp">
+            <objects>
+                <viewController id="ccB-rH-eFT" customClass="ViewController" customModule="mobile_wall" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="D6u-1d-vnZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="nWK-qW-HlJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GRH-n2-42Y">
+                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="abv-Wc-OxE">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="abv-Wc-OxE" firstAttribute="top" secondItem="GRH-n2-42Y" secondAttribute="topMargin" id="ZW0-N9-9yX"/>
+                            <constraint firstItem="nWK-qW-HlJ" firstAttribute="top" secondItem="abv-Wc-OxE" secondAttribute="bottom" id="dUT-yf-b8G"/>
+                            <constraint firstItem="abv-Wc-OxE" firstAttribute="leading" secondItem="GRH-n2-42Y" secondAttribute="leadingMargin" constant="-16" id="eAg-YC-x5e"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="abv-Wc-OxE" secondAttribute="trailing" constant="-16" id="mYf-IB-tmX"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="BBH-9K-g3N"/>
+                    <connections>
+                        <segue destination="EeZ-GX-9GJ" kind="push" identifier="openBrower" id="Wyd-YS-z0T"/>
+                        <segue destination="bF9-Up-u3w" kind="push" identifier="openWeb" id="LFo-vX-H5r"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cxT-q7-OkG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="789" y="348"/>
+        </scene>
+        <!--Open Brower View Controller-->
+        <scene sceneID="l3Z-sd-Wsw">
+            <objects>
+                <viewController id="EeZ-GX-9GJ" customClass="OpenBrowerViewController" customModule="mobile_wall" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HHA-xb-55h"/>
+                        <viewControllerLayoutGuide type="bottom" id="krQ-Jq-vbp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cUH-TI-lrV">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="DEF-Hc-oNY">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.0" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="krQ-Jq-vbp" firstAttribute="top" secondItem="DEF-Hc-oNY" secondAttribute="bottom" id="7cc-S8-DTj"/>
+                            <constraint firstItem="DEF-Hc-oNY" firstAttribute="top" secondItem="cUH-TI-lrV" secondAttribute="topMargin" id="XN7-B6-e6u"/>
+                            <constraint firstItem="DEF-Hc-oNY" firstAttribute="leading" secondItem="cUH-TI-lrV" secondAttribute="leadingMargin" constant="-16" id="cve-RJ-SdL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="DEF-Hc-oNY" secondAttribute="trailing" constant="-16" id="eOm-79-Bs1"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="0iz-xG-jhZ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="URp-Ya-Vwb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1670" y="642"/>
+        </scene>
+        <!--Native Web View Controller-->
+        <scene sceneID="HZk-HM-954">
+            <objects>
+                <viewController id="bF9-Up-u3w" customClass="NativeWebViewController" customModule="mobile_wall" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="P8z-KN-g1K"/>
+                        <viewControllerLayoutGuide type="bottom" id="GU1-86-lNh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fLb-Ls-iLf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="bbo-Ct-u84">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1PR-MY-kwE">
+                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="delegate" destination="bF9-Up-u3w" id="qsJ-Er-3C2"/>
+                                </connections>
+                            </webView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L29-V3-TvT">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem title="Item" systemItem="reply" id="DZd-P7-uR3"/>
+                                </items>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="barTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.67843137249999996" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="L29-V3-TvT" firstAttribute="top" secondItem="1PR-MY-kwE" secondAttribute="bottom" id="82F-CD-53w"/>
+                            <constraint firstItem="L29-V3-TvT" firstAttribute="top" secondItem="1PR-MY-kwE" secondAttribute="bottom" id="92Y-Xb-bBf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="1PR-MY-kwE" secondAttribute="trailing" constant="-16" id="D5r-ze-ylP"/>
+                            <constraint firstItem="bbo-Ct-u84" firstAttribute="leading" secondItem="fLb-Ls-iLf" secondAttribute="leadingMargin" constant="-16" id="I34-Hv-7lz"/>
+                            <constraint firstItem="L29-V3-TvT" firstAttribute="leading" secondItem="fLb-Ls-iLf" secondAttribute="leadingMargin" constant="-16" id="J17-Kr-slF"/>
+                            <constraint firstItem="1PR-MY-kwE" firstAttribute="top" secondItem="fLb-Ls-iLf" secondAttribute="topMargin" constant="64" id="NiX-ou-4Cy"/>
+                            <constraint firstItem="GU1-86-lNh" firstAttribute="top" secondItem="L29-V3-TvT" secondAttribute="bottom" id="P9f-ag-6k6"/>
+                            <constraint firstItem="1PR-MY-kwE" firstAttribute="leading" secondItem="fLb-Ls-iLf" secondAttribute="leadingMargin" constant="-16" id="aP7-lY-dm9"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bbo-Ct-u84" secondAttribute="trailing" constant="-16" id="h3Q-yc-bp2"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="L29-V3-TvT" secondAttribute="trailing" constant="-16" id="mHp-CK-nMD"/>
+                            <constraint firstItem="GU1-86-lNh" firstAttribute="top" secondItem="bbo-Ct-u84" secondAttribute="bottom" id="tTX-Da-Iw4"/>
+                            <constraint firstItem="bbo-Ct-u84" firstAttribute="top" secondItem="fLb-Ls-iLf" secondAttribute="topMargin" id="ypb-5e-Xkz"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="nHS-qH-dxh"/>
+                    <connections>
+                        <outlet property="Toolbar" destination="L29-V3-TvT" id="AUV-o5-rJv"/>
+                        <outlet property="WebView" destination="1PR-MY-kwE" id="4pr-sP-cg8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qWc-GX-yH3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1670" y="-86"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Background" width="600" height="1500"/>
+        <image name="LaunchScreen" width="600" height="1500"/>
+    </resources>
+</document>
