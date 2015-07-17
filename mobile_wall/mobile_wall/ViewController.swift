@@ -21,6 +21,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "Nav"), forBarMetrics: .Default)
+        
+        
+        
         NSNotificationCenter.defaultCenter().addObserver(self,selector: "page:",name: "page",object: nil)
         
         /*
@@ -68,6 +72,9 @@ class ViewController: UIViewController {
             if method == .NATIVE {
                 self.performSegueWithIdentifier("openWeb", sender: self)
             } else {
+
+                //Open in browser
+
                 if(UIApplication.sharedApplication().openURL(MobileWall.sharedInstance.url)){
                     println("OPEN \(MobileWall.sharedInstance.url)\n")
                 } else {
