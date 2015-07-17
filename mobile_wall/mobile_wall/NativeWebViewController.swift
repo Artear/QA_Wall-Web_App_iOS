@@ -12,6 +12,13 @@ class NativeWebViewController: UIViewController, UIWebViewDelegate {
     @IBOutlet weak var WebView: UIWebView!
     @IBOutlet weak var Toolbar: UIToolbar!
 
+    @IBOutlet weak var descriptionView: UIView!
+    
+    @IBOutlet weak var deviceName: UILabel!
+    @IBOutlet weak var deviceModel: UILabel!
+    @IBOutlet weak var deviceSystemVersion: UILabel!
+    @IBOutlet weak var deviceResolution: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = MobileWall.sharedInstance.urlString
@@ -19,6 +26,9 @@ class NativeWebViewController: UIViewController, UIWebViewDelegate {
         
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "Nav"), forBarMetrics: .Default)
         Toolbar.setBackgroundImage(UIImage(named: "Toolbar"), forToolbarPosition: .Any, barMetrics: .Default)
+
+        
+        self.setSystemInformation()
         
         delay(1.5){
             if self.prefersStatusBarHidden() {
@@ -37,6 +47,48 @@ class NativeWebViewController: UIViewController, UIWebViewDelegate {
     }
 
     
+    func showSystemInformation(value: Bool){
+    
+        
+        UIView.animateWithDuration(1.5, animations: { () -> Void in
+            
+            if value{
+                self.descriptionView.alpha = 0.0;
+                self.navigationController?.navigationBar.hidden = false
+            }else{
+                self.descriptionView.alpha = 1.0;
+                self.navigationController?.navigationBar.hidden = true
+            }
+        })
+    
+    }
+    
+    
+    
+    func setSystemInformation(){
+    
+        let infoSystem = MobileWall.sharedInstance.infoSystem()
+
+        
+        println()
+        println("--DISPOSITIVO--")
+        println("name: \t\(UIDevice().name)")
+        println("system name: \t\(UIDevice().systemName) \(UIDevice().systemVersion)")
+        println("modelo: \t\(infoSystem.name!)")
+        println("resolucion: \t\(Int(UIScreen.mainScreen().bounds.height)) x \(Int(UIScreen.mainScreen().bounds.width))")
+        println()
+    
+        
+        UIScreen.mainScreen().bounds
+        self.deviceName.text = UIDevice().name
+        self.deviceSystemVersion.text = infoSystem.name!
+        self.deviceModel.text = "\(UIDevice().systemName) \(UIDevice().systemVersion)"
+        self.deviceResolution.text = "\( Int(UIScreen.mainScreen().bounds.height)  ) x \(Int(UIScreen.mainScreen().bounds.width))"
+    }
+    
+    
+    
+    // webViewDelegate
     
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         
@@ -44,7 +96,7 @@ class NativeWebViewController: UIViewController, UIWebViewDelegate {
         
         
         if url?.scheme == "tnqawall"{
-            
+
             println("ENTROOO")
             return false
             
@@ -74,7 +126,6 @@ class NativeWebViewController: UIViewController, UIWebViewDelegate {
         UIView.animateWithDuration(1.5, animations: { () -> Void in
            self.WebView.alpha = 1
         })
-        
         
     }
 

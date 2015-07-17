@@ -34,7 +34,15 @@ class ViewController: UIViewController {
             if method == .NATIVE {
                 self.performSegueWithIdentifier("openWeb", sender: self)
             } else {
-                self.performSegueWithIdentifier("openBrower", sender: self)
+
+                //Open in browser
+                
+                if(UIApplication.sharedApplication().openURL(MobileWall.sharedInstance.url)){
+                    println("OPEN \(MobileWall.sharedInstance.url)\n")
+                } else {
+                    let alertView = UIAlertView(title: "Browser not supported", message: MobileWall.sharedInstance.method.rawValue, delegate: nil, cancelButtonTitle: "OK")
+                    alertView.show()
+                }
             }
         }
     }
