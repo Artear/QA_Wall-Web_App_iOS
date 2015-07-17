@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		751535821B59587D00B3FE91 /* OnLoadEvent.js in Resources */ = {isa = PBXBuildFile; fileRef = 751535811B59587D00B3FE91 /* OnLoadEvent.js */; };
+		751535841B59924900B3FE91 /* OnLoadEvent.js in Resources */ = {isa = PBXBuildFile; fileRef = 751535831B59924900B3FE91 /* OnLoadEvent.js */; };
 		E17F4B2B1B54488900AD17B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17F4B2A1B54488900AD17B8 /* AppDelegate.swift */; };
 		E17F4B2D1B54488900AD17B8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17F4B2C1B54488900AD17B8 /* ViewController.swift */; };
 		E17F4B301B54488900AD17B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E17F4B2E1B54488900AD17B8 /* Main.storyboard */; };
@@ -16,7 +16,6 @@
 		E17F4B411B54488900AD17B8 /* mobile_wallTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17F4B401B54488900AD17B8 /* mobile_wallTests.swift */; };
 		E1ECD8571B56F58C00DFD412 /* MobileWall.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ECD8561B56F58C00DFD412 /* MobileWall.swift */; };
 		E1ECD8591B585BF000DFD412 /* NativeWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ECD8581B585BF000DFD412 /* NativeWebViewController.swift */; };
-		E1ECD85B1B5867EC00DFD412 /* OpenBrowerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ECD85A1B5867EC00DFD412 /* OpenBrowerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,7 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		751535811B59587D00B3FE91 /* OnLoadEvent.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = OnLoadEvent.js; path = ../../../../../Desktop/OnLoadEvent.js; sourceTree = "<group>"; };
+		751535831B59924900B3FE91 /* OnLoadEvent.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = OnLoadEvent.js; sourceTree = "<group>"; };
 		E17F4B251B54488900AD17B8 /* mobile_wall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mobile_wall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E17F4B291B54488900AD17B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E17F4B2A1B54488900AD17B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -43,7 +42,6 @@
 		E17F4B401B54488900AD17B8 /* mobile_wallTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mobile_wallTests.swift; sourceTree = "<group>"; };
 		E1ECD8561B56F58C00DFD412 /* MobileWall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobileWall.swift; sourceTree = "<group>"; };
 		E1ECD8581B585BF000DFD412 /* NativeWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeWebViewController.swift; sourceTree = "<group>"; };
-		E1ECD85A1B5867EC00DFD412 /* OpenBrowerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenBrowerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +87,6 @@
 				E1ECD8561B56F58C00DFD412 /* MobileWall.swift */,
 				E17F4B2C1B54488900AD17B8 /* ViewController.swift */,
 				E1ECD8581B585BF000DFD412 /* NativeWebViewController.swift */,
-				E1ECD85A1B5867EC00DFD412 /* OpenBrowerViewController.swift */,
 				E17F4B2E1B54488900AD17B8 /* Main.storyboard */,
 				E17F4B311B54488900AD17B8 /* Images.xcassets */,
 				E17F4B331B54488900AD17B8 /* LaunchScreen.xib */,
@@ -101,7 +98,7 @@
 		E17F4B281B54488900AD17B8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				751535811B59587D00B3FE91 /* OnLoadEvent.js */,
+				751535831B59924900B3FE91 /* OnLoadEvent.js */,
 				E17F4B291B54488900AD17B8 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -205,7 +202,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				751535821B59587D00B3FE91 /* OnLoadEvent.js in Resources */,
+				751535841B59924900B3FE91 /* OnLoadEvent.js in Resources */,
 				E17F4B301B54488900AD17B8 /* Main.storyboard in Resources */,
 				E17F4B351B54488900AD17B8 /* LaunchScreen.xib in Resources */,
 				E17F4B321B54488900AD17B8 /* Images.xcassets in Resources */,
@@ -230,7 +227,6 @@
 				E17F4B2D1B54488900AD17B8 /* ViewController.swift in Sources */,
 				E17F4B2B1B54488900AD17B8 /* AppDelegate.swift in Sources */,
 				E1ECD8571B56F58C00DFD412 /* MobileWall.swift in Sources */,
-				E1ECD85B1B5867EC00DFD412 /* OpenBrowerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,12 +353,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = mobile_wall/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1ad7354f-ef14-4db1-92ca-519af2108acb";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -370,13 +367,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = mobile_wall/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1ad7354f-ef14-4db1-92ca-519af2108acb";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
