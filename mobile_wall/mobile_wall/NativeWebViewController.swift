@@ -14,18 +14,23 @@ class NativeWebViewController: UIViewController, UIWebViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = MobileWall.sharedInstance.urlString
+        NSNotificationCenter.defaultCenter().addObserver(self,selector: "page:",name: "page",object: nil)
+        
         self.WebView.alpha = 0
         
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "Nav"), forBarMetrics: .Default)
         Toolbar.setBackgroundImage(UIImage(named: "Toolbar"), forToolbarPosition: .Any, barMetrics: .Default)
         
+     
         delay(1.5){
             if self.prefersStatusBarHidden() {
                 self.navigationController?.setNavigationBarHidden(false, animated: true)
+                self.navigationController?.navigationItem.setHidesBackButton(false, animated: false)
             }
-            self.WebView.loadRequest(NSURLRequest(URL: MobileWall.sharedInstance.url))
         }
+
+
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -78,4 +83,12 @@ class NativeWebViewController: UIViewController, UIWebViewDelegate {
         
     }
 
+    @objc func page(notification: NSNotification){
+        self.navigationController?.navigationItem.setHidesBackButton(false, animated: false)
+        if MobileWall.sharedInstance.urlString != "" {
+            title = MobileWall.sharedInstance.urlString
+            self.WebView.loadRequest(NSURLRequest(URL: MobileWall.sharedInstance.url))
+        }
+    }
+    
 }
