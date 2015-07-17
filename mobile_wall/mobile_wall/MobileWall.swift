@@ -92,4 +92,15 @@ class MobileWall: NSObject {
         self.urlString = url
         self.method = method
     }
+    
+    
+    func infoSystem() -> InfoSystem{
+        var sysinfo = utsname()
+        uname(&sysinfo) // ignore return value
+        let iphone = NSString(bytes: &sysinfo.machine, length: Int(_SYS_NAMELEN), encoding: NSASCIIStringEncoding)! as String
+        let systemVersion = UIDevice.currentDevice().systemVersion
+        
+        return InfoSystem(name: iphone, version: systemVersion)
+    }
+
 }
