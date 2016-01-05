@@ -21,21 +21,26 @@ class NativeWebViewController: UIViewController, UIWebViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = MobileWall.sharedInstance.urlString
+        NSNotificationCenter.defaultCenter().addObserver(self,selector: "page:",name: "page",object: nil)
+        
         self.WebView.alpha = 0
         
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "Nav"), forBarMetrics: .Default)
+        
         Toolbar.setBackgroundImage(UIImage(named: "Toolbar"), forToolbarPosition: .Any, barMetrics: .Default)
 
-        
         self.setSystemInformation()
+        self.showSystemInformation(false)
         
-        delay(1.5){
+     
+        //delay(1.5){
             if self.prefersStatusBarHidden() {
-                self.navigationController?.setNavigationBarHidden(false, animated: true)
+                self.navigationController?.setNavigationBarHidden(false, animated: false)
+                //self.navigationController?.navigationItem.setHidesBackButton(false, animated: false)
+                let backButton = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: navigationController, action: nil)
+                navigationItem.leftBarButtonItem = backButton
             }
-            self.WebView.loadRequest(NSURLRequest(URL: MobileWall.sharedInstance.url))
-        }
+        //}
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,10 +53,7 @@ class NativeWebViewController: UIViewController, UIWebViewDelegate {
 
     
     func showSystemInformation(value: Bool){
-    
-        
         UIView.animateWithDuration(1.5, animations: { () -> Void in
-            
             if value{
                 self.descriptionView.alpha = 0.0;
                 self.navigationController?.navigationBar.hidden = false
@@ -60,7 +62,6 @@ class NativeWebViewController: UIViewController, UIWebViewDelegate {
                 self.navigationController?.navigationBar.hidden = true
             }
         })
-    
     }
     
     
@@ -68,7 +69,6 @@ class NativeWebViewController: UIViewController, UIWebViewDelegate {
     func setSystemInformation(){
     
         let infoSystem = MobileWall.sharedInstance.infoSystem()
-
         
         println()
         println("--DISPOSITIVO--")
@@ -85,48 +85,35 @@ class NativeWebViewController: UIViewController, UIWebViewDelegate {
         self.deviceModel.text = "\(UIDevice().systemName) \(UIDevice().systemVersion)"
         self.deviceResolution.text = "\( Int(UIScreen.mainScreen().bounds.height)  ) x \(Int(UIScreen.mainScreen().bounds.width))"
     }
-    
-    
-    
+
     // webViewDelegate
     
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        
         let url = request.URL
-        
-        
         if url?.scheme == "tnqawall"{
-
             println("ENTROOO")
             return false
-            
         }
-        
         return true
-        
     }
 
-    
-    
-    
     func webViewDidFinishLoad(webView: UIWebView) {
-        
         var script:String?
-        
         if let filePath:String = NSBundle(forClass: ViewController.self).pathForResource("OnLoadEvent", ofType:"js") {
-            
             script = String (contentsOfFile: filePath, encoding: NSUTF8StringEncoding, error: nil)
         }
-        
-        
-        
         webView.stringByEvaluatingJavaScriptFromString(script!)
-
-        
         UIView.animateWithDuration(1.5, animations: { () -> Void in
            self.WebView.alpha = 1
         })
-        
     }
 
+    @objc func page(notification: NSNotification){
+        if MobileWall.sharedInstance.urlString != "" {
+            self.showSystemInformation(true)
+            title = MobileWall.sharedInstance.urlString
+            self.WebView.loadRequest(NSURLRequest(URL: MobileWall.sharedInstance.url))
+        }
+    }
+    
 }

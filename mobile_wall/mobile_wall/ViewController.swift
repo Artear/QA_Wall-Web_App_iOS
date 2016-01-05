@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         if self.navigationController?.navigationBarHidden == false {
             self.navigationController?.setNavigationBarHidden(true, animated: true)
-            loadData()
+            //loadData()
         }
         
         println("viewWillAppear")
@@ -21,8 +21,46 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSNotificationCenter.defaultCenter().addObserver(self,selector: "reloadApp:",name: "reloadApp",object: nil)
-        loadData()
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "Nav"), forBarMetrics: .Default)
+        
+        
+        
+        NSNotificationCenter.defaultCenter().addObserver(self,selector: "page:",name: "page",object: nil)
+        
+        /*
+        var bgTask = UIBackgroundTaskIdentifier()
+        bgTask = UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler { () -> Void in
+            UIApplication.sharedApplication().endBackgroundTask(bgTask)
+        }
+        */
+        
+        let socket = SocketIOClient(socketURL: "http://tn.codiarte.com:9187")
+        
+        socket.on("connect") {data, ack in
+            println("socket connected")
+            socket.emit("log", ["msn": "ALEJOOOOOOOOOOOOOOO"])
+        }
+        
+        socket.on("page") {data, ack in
+            if let dataPage: AnyObject = data?[0] {
+                if let url = dataPage["url"] as? String {
+                    println(url)
+                    MobileWall.sharedInstance.load(url, method: .NATIVE)
+                    NSNotificationCenter.defaultCenter().postNotificationName("page", object: nil)
+                }
+                
+            }
+
+            println("new URL -> \(data?[0])")
+
+        }
+
+        socket.connect()
+        
+        
+        self.performSegueWithIdentifier("openWeb", sender: self)
+        
+        
     }
     
     func loadData(){
@@ -36,7 +74,7 @@ class ViewController: UIViewController {
             } else {
 
                 //Open in browser
-                
+
                 if(UIApplication.sharedApplication().openURL(MobileWall.sharedInstance.url)){
                     println("OPEN \(MobileWall.sharedInstance.url)\n")
                 } else {
@@ -56,9 +94,9 @@ class ViewController: UIViewController {
         println("->view \(segue.identifier as String?)")
     }
     
-    @objc func reloadApp(notification: NSNotification){
-        navigationController?.popViewControllerAnimated(false)
-        self.loadData()
+    @objc func page(notification: NSNotification){
+        //navigationController?.popViewControllerAnimated(false)
+        //self.loadData()
     }
 
 }
