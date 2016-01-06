@@ -10,13 +10,16 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    var URL:NSString!
+    var socketPort:NSString!
+    
     override func viewWillAppear(animated: Bool) {
         if self.navigationController?.navigationBarHidden == false {
             self.navigationController?.setNavigationBarHidden(true, animated: true)
-            //loadData()
+//            loadData()
         }
         
-        println("viewWillAppear")
+        print("viewWillAppear")
     }
     
     override func viewDidLoad() {
@@ -24,8 +27,34 @@ class ViewController: UIViewController {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "Nav"), forBarMetrics: .Default)
         
         
-        
+
         NSNotificationCenter.defaultCenter().addObserver(self,selector: "page:",name: "page",object: nil)
+        
+        let sem = dispatch_semaphore_create(0)
+
+        
+        let request = NSMutableURLRequest(URL: NSURL(string: "http://tn.codiarte.com/public/QA_Wall-Logger_Server-Helper/get_ip.php")!)
+        
+        _ = NSURLSession.sharedSession().dataTaskWithRequest(request) { ( data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+            
+            var info:NSMutableDictionary
+            // respuesta
+            do{
+                info = try NSJSONSerialization.JSONObjectWithData(data!, options:  NSJSONReadingOptions.MutableContainers) as! NSMutableDictionary
+                self.URL = info.objectForKey("localIp") as! String
+                self.socketPort = info.objectForKey("socket_port") as! String
+                
+                
+            } catch{
+            
+            }
+            
+            dispatch_semaphore_signal(sem)
+        }.resume()
+        
+        
+        dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER)
+        
         
         /*
         var bgTask = UIBackgroundTaskIdentifier()
@@ -33,25 +62,24 @@ class ViewController: UIViewController {
             UIApplication.sharedApplication().endBackgroundTask(bgTask)
         }
         */
-        
-        let socket = SocketIOClient(socketURL: "http://tn.codiarte.com:9187")
+        let socket = SocketIOClient(socketURL: "\(self.URL):\(self.socketPort)")
         
         socket.on("connect") {data, ack in
-            println("socket connected")
+            print("socket connected")
             socket.emit("log", ["msn": "ALEJOOOOOOOOOOOOOOO"])
         }
         
         socket.on("page") {data, ack in
-            if let dataPage: AnyObject = data?[0] {
+            if let dataPage: AnyObject = data[0] {
                 if let url = dataPage["url"] as? String {
-                    println(url)
+                    print(url)
                     MobileWall.sharedInstance.load(url, method: .NATIVE)
                     NSNotificationCenter.defaultCenter().postNotificationName("page", object: nil)
                 }
                 
             }
 
-            println("new URL -> \(data?[0])")
+            print("new URL -> \(data[0])")
 
         }
 
@@ -60,12 +88,11 @@ class ViewController: UIViewController {
         
         self.performSegueWithIdentifier("openWeb", sender: self)
         
-        
     }
     
     func loadData(){
         delay(1.5){
-            var url = "http://tn.com.ar/"
+            let url = "http://tn.com.ar/"
             let method:MethodMobileWall = .NATIVE //.SAFARI
             MobileWall.sharedInstance.load(url, method: method)
             
@@ -76,7 +103,7 @@ class ViewController: UIViewController {
                 //Open in browser
 
                 if(UIApplication.sharedApplication().openURL(MobileWall.sharedInstance.url)){
-                    println("OPEN \(MobileWall.sharedInstance.url)\n")
+                    print("OPEN \(MobileWall.sharedInstance.url)\n")
                 } else {
                     let alertView = UIAlertView(title: "Browser not supported", message: MobileWall.sharedInstance.method.rawValue, delegate: nil, cancelButtonTitle: "OK")
                     alertView.show()
@@ -91,7 +118,7 @@ class ViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        println("->view \(segue.identifier as String?)")
+        print("->view \(segue.identifier as String?)")
     }
     
     @objc func page(notification: NSNotification){

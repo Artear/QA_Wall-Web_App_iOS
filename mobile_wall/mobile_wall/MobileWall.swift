@@ -70,8 +70,8 @@ class MobileWall: NSObject {
                 return NSURL(string: urlString)!
             }
             
-            if let absoluteString = temUrl!.absoluteString {
-                return NSURL(string: absoluteString.replace(scheme! + "://", withString: newScheme! + "://"))!
+            if let absoluteString = temUrl?.absoluteString {
+                return NSURL(string: absoluteString.replace(scheme + "://", withString: newScheme + "://"))!
             }
             
             return NSURL(string: urlString)!
@@ -85,7 +85,7 @@ class MobileWall: NSObject {
     var method:MethodMobileWall = .NATIVE
     
     override init() {
-        println("MobileWall init");
+        print("MobileWall init");
     }
     
     func load(url: String,method:MethodMobileWall){

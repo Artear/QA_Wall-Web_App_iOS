@@ -1,6 +1,6 @@
 //
 //  SocketFixUTF8.swift
-//  Socket.IO-Swift
+//  Socket.IO-Client-Swift
 //
 //  Created by Erik Little on 3/16/15.
 //
@@ -25,14 +25,20 @@
 
 import Foundation
 
-func fixDoubleUTF8(inout name:String) {
-    let utf8 = name.dataUsingEncoding(NSISOLatin1StringEncoding)!
-    let latin1 = NSString(data: utf8, encoding: NSUTF8StringEncoding)!
-    name = latin1 as String
+func fixDoubleUTF8(string: String) -> String {
+    if let utf8 = string.dataUsingEncoding(NSISOLatin1StringEncoding),
+        latin1 = NSString(data: utf8, encoding: NSUTF8StringEncoding) {
+            return latin1 as String
+    } else {
+        return string
+    }
 }
 
-func doubleEncodeUTF8(inout str:String) {
-    let latin1 = str.dataUsingEncoding(NSUTF8StringEncoding)!
-    let utf8 = NSString(data: latin1, encoding: NSISOLatin1StringEncoding)!
-    str = utf8 as String
+func doubleEncodeUTF8(string: String) -> String {
+    if let latin1 = string.dataUsingEncoding(NSUTF8StringEncoding),
+        utf8 = NSString(data: latin1, encoding: NSISOLatin1StringEncoding) {
+            return utf8 as String
+    } else {
+        return string
+    }
 }

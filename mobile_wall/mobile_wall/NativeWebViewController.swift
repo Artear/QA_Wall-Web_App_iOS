@@ -70,13 +70,13 @@ class NativeWebViewController: UIViewController, UIWebViewDelegate {
     
         let infoSystem = MobileWall.sharedInstance.infoSystem()
         
-        println()
-        println("--DISPOSITIVO--")
-        println("name: \t\(UIDevice().name)")
-        println("system name: \t\(UIDevice().systemName) \(UIDevice().systemVersion)")
-        println("modelo: \t\(infoSystem.name!)")
-        println("resolucion: \t\(Int(UIScreen.mainScreen().bounds.height)) x \(Int(UIScreen.mainScreen().bounds.width))")
-        println()
+        print("\n")
+        print("--DISPOSITIVO--")
+        print("name: \t\(UIDevice().name)")
+        print("system name: \t\(UIDevice().systemName) \(UIDevice().systemVersion)")
+        print("modelo: \t\(infoSystem.name!)")
+        print("resolucion: \t\(Int(UIScreen.mainScreen().bounds.height)) x \(Int(UIScreen.mainScreen().bounds.width))")
+        print("\n")
     
         
         UIScreen.mainScreen().bounds
@@ -91,16 +91,21 @@ class NativeWebViewController: UIViewController, UIWebViewDelegate {
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         let url = request.URL
         if url?.scheme == "tnqawall"{
-            println("ENTROOO")
+            print("ENTROOO")
             return false
         }
         return true
     }
 
+    
     func webViewDidFinishLoad(webView: UIWebView) {
         var script:String?
         if let filePath:String = NSBundle(forClass: ViewController.self).pathForResource("OnLoadEvent", ofType:"js") {
-            script = String (contentsOfFile: filePath, encoding: NSUTF8StringEncoding, error: nil)
+            do{
+                try script = String (contentsOfFile: filePath, encoding: NSUTF8StringEncoding)
+            } catch{
+            
+            }
         }
         webView.stringByEvaluatingJavaScriptFromString(script!)
         UIView.animateWithDuration(1.5, animations: { () -> Void in
@@ -108,6 +113,7 @@ class NativeWebViewController: UIViewController, UIWebViewDelegate {
         })
     }
 
+    
     @objc func page(notification: NSNotification){
         if MobileWall.sharedInstance.urlString != "" {
             self.showSystemInformation(true)
